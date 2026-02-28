@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://c32e5luxf613f"]
+
+[ext_resource type="Texture2D" uid="uid://34s7yd0cr00r" path="res://Images/Menu/Started.png" id="1_cepqx"]
+[ext_resource type="Texture2D" uid="uid://dsonha0uwpnbj" path="res://Images/Menu/Activated.png" id="2_e81xx"]
+[ext_resource type="Texture2D" uid="uid://crxthhtmpf6ao" path="res://Images/River/Untitled632_20260228153014.png" id="3_e81xx"]
+
+[sub_resource type="GDScript" id="GDScript_6ifwy"]
+resource_name = "buttttttttttttttton"
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_mouse_entered() -> void:
+	$\"../AnimatedSprite2D\".play(\"Touched\")
+
+
+func _on_mouse_exited() -> void:
+	$\"../AnimatedSprite2D\".play(\"Untouched\")
+
+
+func _on_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Sea.tscn\")
+	print(\"f\")
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g1pkl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cepqx")
+}],
+"loop": true,
+"name": &"Toutched",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e81xx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_cepqx")
+}],
+"loop": true,
+"name": &"Untouched",
+"speed": 3.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=905151971]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1383067441]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=734047665]
+position = Vector2(592, 369.99997)
+scale = Vector2(1.2, 1.2055554)
+texture = ExtResource("3_e81xx")
+
+[node name="Node2D" type="Node2D" parent="Node2D" unique_id=1864190086]
+position = Vector2(11, 25)
+
+[node name="Button" type="Button" parent="Node2D/Node2D" unique_id=1012492076]
+offset_left = 460.0
+offset_top = 468.0
+offset_right = 816.0
+offset_bottom = 560.0
+script = SubResource("GDScript_6ifwy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/Node2D" unique_id=518990610]
+position = Vector2(753, 573)
+scale = Vector2(10.250001, 7.549999)
+sprite_frames = SubResource("SpriteFrames_g1pkl")
+animation = &"Untouched"
+autoplay = "Toutched"
+
+[node name="Camera2D" type="Camera2D" parent="Node2D" unique_id=1740771371]
+position = Vector2(591, 371.00003)
+zoom = Vector2(0.5, 0.5)
+
+[connection signal="mouse_entered" from="Node2D/Node2D/Button" to="Node2D/Node2D/Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Node2D/Node2D/Button" to="Node2D/Node2D/Button" method="_on_mouse_exited"]
+[connection signal="pressed" from="Node2D/Node2D/Button" to="Node2D/Node2D/Button" method="_on_pressed"]

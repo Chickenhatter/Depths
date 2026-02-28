@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dup4vaj6ojwfb"]
+
+[ext_resource type="Texture2D" uid="uid://dbu7xmlltm7fm" path="res://Images/Cool/Untitled636_20260228163005.png" id="1_ym16l"]
+
+[sub_resource type="GDScript" id="GDScript_3j0me"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	$Path2D/PathFollow2D.progress += 1
+
+
+func _on_area_2_da_area_entered(area: Area2D) -> void:
+	if area is Area2D:
+		get_tree().change_scene_to_file(\"res://Images/Fun/Menu.tscn\")
+"
+
+[sub_resource type="Curve2D" id="Curve2D_ym16l"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -401, 361, 0, 0, 0, 0, -562, 357)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d4pfa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wy6th"]
+
+[node name="Node2D" type="Node2D" unique_id=1628873113]
+script = SubResource("GDScript_3j0me")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=87210400]
+position = Vector2(8.5, 3.0517578e-05)
+scale = Vector2(1.1984375, 1.2055556)
+texture = ExtResource("1_ym16l")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=563213436]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Path2D" type="Path2D" parent="." unique_id=1128209227]
+curve = SubResource("Curve2D_ym16l")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1296945281]
+position = Vector2(-401, 361)
+rotation = -3.116753
+
+[node name="Area2Da" type="Area2D" parent="Path2D/PathFollow2D" unique_id=315818150]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2Da" unique_id=1111898938]
+shape = SubResource("RectangleShape2D_d4pfa")
+
+[node name="a" type="Area2D" parent="." unique_id=933779159]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="a" unique_id=822332341]
+position = Vector2(-563, 354)
+shape = SubResource("RectangleShape2D_wy6th")
+
+[connection signal="area_entered" from="Path2D/PathFollow2D/Area2Da" to="." method="_on_area_2_da_area_entered"]

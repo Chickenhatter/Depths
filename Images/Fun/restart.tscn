@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b0aj0p6fm3bqo"]
+
+[ext_resource type="Texture2D" uid="uid://bql2kyd2kvl0v" path="res://Images/Lol/pixil-frame-0 (14).png" id="1_vphmp"]
+
+[sub_resource type="GDScript" id="GDScript_kjf5g"]
+script/source = "extends Node2D
+
+func _ready() -> void:
+	get_tree().change_scene_to_file(\"res://Sea.tscn\")
+"
+
+[node name="Restart" type="Node2D" unique_id=1284012198]
+script = SubResource("GDScript_kjf5g")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2026293164]
+position = Vector2(66.00098, 1988.0039)
+scale = Vector2(813.4, 401.24)
+texture = ExtResource("1_vphmp")
